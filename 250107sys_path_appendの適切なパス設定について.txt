@@ -1,0 +1,29 @@
+250107sys.path.appendの適切なパス設定について
+
+1. 絶対パスを動的に取得する
+win32com モジュールの場所: win32com モジュールがインストールされているディレクトリをプログラムで取得し、そのパスを sys.path.append() に渡します。
+__file__ 変数: 現在実行中のスクリプトのファイルパスを取得する __file__ 変数を利用して、相対パスで指定することも可能です。
+Python
+
+import sys
+import os
+import win32com
+
+# win32com モジュールのディレクトリを取得
+win32com_dir = os.path.dirname(win32com.__file__)
+
+# sys.path に追加
+sys.path.append(win32com_dir)
+
+
+
+2. 環境変数を利用する
+PYTHONPATH 環境変数: PYTHONPATH 環境変数に win32com モジュールのディレクトリを追加しておき、スクリプト内で sys.path を確認せずに済ませます。
+Bash
+
+# コマンドプロンプトで設定 (例)
+set PYTHONPATH=%PYTHONPATH%;C:\path\to\win32com
+
+#私の環境では
+set PYTHONPATH=%PYTHONPATH%;C:\Users\ohsug\anaconda3\lib\site-packages\win32com
+
